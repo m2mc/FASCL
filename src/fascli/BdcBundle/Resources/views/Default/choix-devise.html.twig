@@ -1,0 +1,148 @@
+{% extends '::appLayout.html.twig' %}
+{% block table -%}
+<ul class="pager">
+{#---------------------------------------------------------------------------------------------------------------#}
+<div class="row" >
+{#------------------#}
+      <div class="span4">
+        <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+          <div class="panel-heading alert alert-danger" style="border:solid 1px;position:center;">
+            <h3 class="panel-title" style="padding-left:30%">
+            <li>
+             <a href="{{ path('neweuro',{"type": 'EA'}) }}">
+               ACHAT EURO
+             </a>
+            </li>
+
+            </h3>
+          </div>
+        <div class="panel-body">
+      </div>
+ </div>
+ </div>
+    <div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold"">
+                <div class="panel-heading alert alert-info" style="border:solid 1px;">
+                  <h3 class="panel-title">
+                  <li>
+                   <a href="{{ path('newdollar',{"type": 'DA'}) }}">
+                   ACHAT DOLLAR
+                   </a>
+                    </li>
+                  </h3>
+                </div>
+                <div class="panel-body">
+               </div>
+               </div>
+               </div>
+    
+
+     <div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+                <div class="panel-heading alert alert-info" style="border:solid 1px;">
+                  <h3 class="panel-title">
+     <li>
+        <a href="{{ path('newgbp',{"type": 'GA'}) }}">
+            ACHAT GBP
+        </a>
+    </li>
+
+                  </h3>
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>
+     </div>
+     </div>
+         
+{#---------------------------------------------------------------------------------------------------------------#}
+
+<div class="row" >
+
+<div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+                <div class="panel-heading alert alert-info" style="border:solid 1px;">
+                  <h3 class="panel-title">
+                     <li>
+                        <a href="{{ path('newsuisse',{"type": 'SA'}) }}">
+                            ACHAT F/SUISSE
+                        </a>
+                    </li>
+
+                  </h3>
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>
+     </div>
+<div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+                <div class="panel-heading alert alert-success" style="border:solid 1px;">
+                  <h3 class="panel-title" style="padding-left:30%">
+                    <li>
+                        <a href="{{ path('neweuro',{"type": 'EV'}) }}">
+                            VENTE EURO
+                        </a>
+                     </li>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>
+        </div>
+     <div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+                <div class="panel-heading alert alert-danger" style="border:solid 1px;">
+                  <h3 class="panel-title" style="padding-left:30%">
+
+      <li>
+        <a href="{{ path('newdollar',{"type": 'DV'}) }}">
+            VENTE DOLLAR
+        </a>
+    </li>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>
+     </div>
+     </div>
+{#---------------------------------------------------------------------------------------------------------------#}
+<div class="row" >
+<div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+                <div class="panel-heading alert alert-danger" style="border:solid 1px;">
+                  <h3 class="panel-title" style="padding-left:30%">
+   <li>
+        <a href="{{ path('newgbp',{"type": 'GV'}) }}">
+            VENTE GBP
+        </a>
+    </li>
+
+                  </h3>
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>
+     </div>
+ <div class="span4">
+     <div class="panel panel-default" style="border:solid 1px;margin-left:10px;margin-top:10px;font-weight:bold">
+        <div class="panel-heading alert alert-info" style="border:solid 1px;">
+            <h3 class="panel-title">
+             <li>
+                <a href="{{ path('newsuisse',{"type": 'SV'}) }}">
+                    VENTE F/SUISSE
+                </a>
+            </li>
+            </h3>
+        </div>
+    <div class="panel-body">
+ </div>
+</div>
+</div>
+</div>
+{#---------------------------------------------------------------------------------------------------------------#}
+</ul>
+ 
+ 
+{% endblock %}

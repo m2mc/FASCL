@@ -1,0 +1,72 @@
+{% extends '::appLayout.html.twig' %}
+{%  set x = 0 %}    
+{% block table -%}
+    <h1>DEPENSES EFFECTUEES</h1>
+    <div class="count">
+  <h4>  TOTAL ENREGISTRE: {{ pagination.getTotalItemCount }} </h4>
+</div>
+    <table class="table table-striped table-bordered table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+        <thead>
+            <tr>
+                {#<th>N°</th>#}
+                <th>DATE DEPENSE</th>
+                <th>LIBELLE</th>
+                <th>MONTANT</th>
+                <th>AUTORISATION</th>
+                 {#<th>CASHPOINT</th>#}
+                <th>RUBRIQUE</th>
+                 {#<th>ENREGISTREUR</th>#}
+                 {#<th>N° FACTURE</th>#}
+                <th>STATUT</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                {#<td><a href="{{ path('dep_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td>{% if entity.datdepense %}{{ entity.datdepense|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.libelle }}</td>
+                <td>{{ entity.montant|number_format(0, '.', ' ') }}</td>
+                <td>{{ entity.autorisation }}</td>
+                {#<td>{{ entity.cashpoint }}</td>#}
+                <td>{{ entity.rubrique }}</td>
+                {#<td>{{ entity.enregistreur }}</td>#}
+                {#<td>{{ entity.nfacture }}</td>#}
+                <td>{{ entity.statut }}</td>
+                <td>
+                <ul class="unstyled" style="font-weight:bold;">
+                    <li>
+                        <a href="{{ path('dep_show', { 'id': entity.id }) }}">VOIR</a>
+                    </li>
+                    {#<li>
+                        <a href="{{ path('dep_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>#}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+    {% for ee in entitiesmois %}
+     {% set x = x + ee.montant %}
+    {% endfor %}
+    <div class="alert alert-info" style="font-weight:bold;">
+<div class="alert">RECAPITULATIF DES DEPENSES ENREGISTREES</div>
+<table class=" table-condensed ">
+<tr>
+ <td>TOTAL DEPENSES : {{x|number_format(0, '.', ' ')}} F CFA <br> </td>
+</tr>
+</table>
+</div>
+        <ul class="pager unstyled" style="font-weight:bold;">
+        <li>
+            <a href="{{ path('dep_new') }}">
+                Enregistrer une nouvelle dépense
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

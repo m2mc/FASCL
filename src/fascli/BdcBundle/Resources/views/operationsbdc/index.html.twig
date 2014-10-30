@@ -1,0 +1,51 @@
+{#{% extends '::base.html.twig' %}#}
+
+{% block body -%}
+    <h1>operationsbdc list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datope</th>
+                <th>Caissier</th>
+                <th>Agence</th>
+                <th>Typope</th>
+                <th>Devise</th>
+                <th>Client</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('ope-bdc_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.datope %}{{ entity.datope|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.caissier }}</td>
+                <td>{{ entity.agence }}</td>
+                <td>{{ entity.typope }}</td>
+                <td>{{ entity.devise }}</td>
+                <td>{{ entity.client }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('ope-bdc_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ope-bdc_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('ope-bdc_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

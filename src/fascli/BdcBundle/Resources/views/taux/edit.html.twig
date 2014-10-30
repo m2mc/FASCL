@@ -1,0 +1,38 @@
+{% extends '::appLayout.html.twig' %}
+{% block message %}
+{{ parent()}}
+{% endblock %}
+{% block sidebar %}
+
+{% if is_granted("ROLE_TAUXBDC") %}
+<li><a href="{{ path('choixdevise')   }}">FAIRE UNE OPERATION</a></li>                         
+<li><a href="{{ path('taux')   }}">RETOUR AUX TAUX ENREGISTRES</a></li>                         
+<li><a href="{{ path('taux_edit', { 'id': 1 })   }}">MODIFICATION DES COUPURES DE 1</a></li>                         
+<li><a href="{{ path('taux_edit', { 'id': 2 })  }}">MODIFICATION DES COUPURES DE 5</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 3})  }}">MODIFICATION DES COUPURES DE 10</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 4 })  }}">MODIFICATION DES COUPURES DE 20</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 5 })  }}">MODIFICATION DES COUPURES DE 50</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 6 })  }}">MODIFICATION DES COUPURES DE 100</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 7 })  }}">MODIFICATION DES COUPURES DE 200</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 8 })  }}">MODIFICATION DES COUPURES DE 500</a></li>                             
+<li><a href="{{ path('taux_edit', { 'id': 9 })  }}">MODIFICATION DES COUPURES DE 1000</a></li>                             
+{% endif %}
+
+{% endblock %}
+{% block table-%}
+    <h1>Modification taux</h1>
+{% include "fascliBdcBundle:taux:medit.html.twig" %}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    if ($('.update').is(":visible")){$('.changetaux').hide(0);}
+    else {
+	$('.changetaux').fadeIn().delay(4000).fadeOut(); }
+});
+</script>
+{% endblock %}
+
+
+
+
+
+

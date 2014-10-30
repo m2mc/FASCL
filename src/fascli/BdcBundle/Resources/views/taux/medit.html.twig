@@ -1,0 +1,109 @@
+{% for flashMessage in app.session.flashbag.get('notice2') %}
+<div class="update alert alert-success" style="font-weight:bold;">
+{{ flashMessage }}
+</div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('notice3') %}
+<div class="changetaux alert alert-success" style="font-weight:bold;">
+{{ flashMessage }}
+</div>
+{% endfor %}
+<form class="form-horizontal" action="{{ path('taux_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<input type="hidden" name="_method" value="PUT" />
+ <div class="control_group">
+<div class="control-label">
+{{ form_errors(edit_form.ea) }}
+{{ form_label(edit_form.ea, 'ACHAT EURO'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.ea) }}
+</div>
+</div>  
+<div class="control_group " >
+      <div class="control-label">
+{{ form_errors(edit_form.ev) }}
+{{ form_label(edit_form.ev, 'VENTE EURO'|trans) }}
+      </div>
+<div class="controls ">
+{{ form_widget(edit_form.ev) }}
+</div>
+</div>   
+ <div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.da) }}
+{{ form_label(edit_form.da, 'ACHAT DOLLAR'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.da) }}
+</div>
+</div> 
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.dv) }}
+{{ form_label(edit_form.dv, 'VENTE DOLLAR'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.dv) }}
+</div>
+</div>  
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.ga) }}
+{{ form_label(edit_form.ga, 'ACHAT GBP'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.ga) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.gv) }}
+{{ form_label(edit_form.gv, 'VENTE GBP'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.gv) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.sa) }}
+{{ form_label(edit_form.sa, 'ACHAT F/SUISSE'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.sa) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.sv) }}
+{{ form_label(edit_form.sv, 'VENTE F/SUISSE'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.sv) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_label(edit_form.submit) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.submit, { 'attr': {'class': 'pull-right btn btn-primary'}}) }}
+</div>
+</div>
+ <div class="control_group">
+{{ form_rest(edit_form) }}
+</div> 
+</form>
+{# <ul class="pager">
+    <li class="pull-left">
+        <a href="{{ path('taux') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li class="pull-right">
+        <a href="{{ path('abonnements_update', { 'id': entity.id }) }}">Mise a jour
+        </a>
+    </li>
+     <li>{{ form(delete_form) }} 
+    </li>
+</ul> #}

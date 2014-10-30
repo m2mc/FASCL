@@ -1,0 +1,88 @@
+{% for flashMessage in app.session.flashbag.get('notice6') %}
+<div class="alert alert-success" style="font-weight:bold;">
+{{ flashMessage }}
+</div>
+{% endfor %}
+<form class="form-horizontal" action="{{ path('ope_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<input type="hidden" name="_method" value="PUT" />
+ <div class="control_group">
+<div class="control-label">
+<div class="control_group " >
+      <div class="control-label">
+{{ form_errors(edit_form.type) }}
+{{ form_label(edit_form.type) }}
+      </div>
+<div class="controls col-md-3 ">
+{{ form_widget(edit_form.type) }}
+</div>
+</div>   
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.montant) }}
+{{ form_label(edit_form.montant) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.montant) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.piece) }}
+{{ form_label(edit_form.piece) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.piece) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.npiece) }}
+{{ form_label(edit_form.npiece) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.npiece) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.expdate) }}
+{{ form_label(edit_form.expdate) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.expdate) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.client) }}
+{{ form_label(edit_form.client) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.client) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_label(edit_form.submit) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.submit, { 'attr': {'class': 'pull-right btn btn-primary'}}) }}
+</div>
+</div>
+ <div class="control_group">
+{{ form_rest(edit_form) }}
+</div> 
+</form>
+ {#<ul class="pager pull-right">
+    <li class="">
+        <a href="{{ path('ope') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li class="pull-right">
+        <a href="{{ path('ope_update', { 'id': entity.id }) }}">Modifier
+        </a>
+    </li>
+     <li>{{ form(delete_form) }} 
+    </li>
+</ul> #}

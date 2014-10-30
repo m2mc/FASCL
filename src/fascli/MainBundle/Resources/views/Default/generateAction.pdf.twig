@@ -1,0 +1,40 @@
+<pdf>
+    <dynamic-page>
+ 
+ <table class="table table-striped table-bordered table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+        <thead>
+            <tr>
+                {#<th>N°</th>#}
+                <th>DATE</th>
+                {#<th>DE</th>#}
+                <th>TITRE</th>
+                {#<th>CONTENU</th>#}
+                {#<th>ACTIONS</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for ent in entity %}
+            <tr>
+                {#<td>{{ entity.client }}</td>#}
+                <td>{{ entity.datope }}</td>
+                <td>{{ entity.caissier }}</td>
+                <td>{{ entity.agence }}</td>
+                <td>{{ entity.typope }}</td>
+                <td>{{ entity.devise }}</td>
+                <td>
+                <ul class="unstyled" style="font-weight:bold;">
+                    <li>
+                        <a href="{{ path('memos_show', { 'id': entity.id }) }}">VOIR</a>
+                    </li>
+                    {#<li>
+                        <a href="{{ path('memos_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>#}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </dynamic-page>
+</pdf>

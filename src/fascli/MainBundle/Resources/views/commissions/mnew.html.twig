@@ -1,0 +1,45 @@
+<form class="form-horizontal " action="{{ path('com_create') }}" method="post" {{ form_enctype(form) }}>
+<div class="control_group " style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.debutperiode) }}
+{{ form_label(form.debutperiode, 'Debut de periode'|trans) }}
+      </div>
+<div class="controls " >
+{{ form_widget(form.debutperiode) }} 
+  
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.finperiode) }}
+{{ form_label(form.finperiode, 'Fin de période'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.finperiode) }}
+</div>
+</div>   
+<div class="control_group " style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.montant) }}
+{{ form_label(form.montant, 'Montant'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.montant) }}
+</div>
+</div>  
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_label(form.submit, 'Enregistrer'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary pull-right'} }) }}
+</div>
+</div>
+<div class="control_group">
+{{ form_rest(form) }}
+</div>
+    {#<p>
+        <button class="btn btn-inverse pull-right" type="submit">Enregistrer</button>
+    </p>#}
+</form>

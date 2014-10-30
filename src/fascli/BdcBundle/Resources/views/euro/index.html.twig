@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>euro list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Val</th>
+                <th>Qte</th>
+                <th>Remise</th>
+                <th>Taux</th>
+                <th>Tauxreel</th>
+                <th>Qterest</th>
+                <th>Marge</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('euro_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.type }}</td>
+                <td>{{ entity.val }}</td>
+                <td>{{ entity.qte }}</td>
+                <td>{{ entity.remise }}</td>
+                <td>{{ entity.taux }}</td>
+                <td>{{ entity.tauxreel }}</td>
+                <td>{{ entity.qterest }}</td>
+                <td>{{ entity.marge }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('euro_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('euro_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('euro_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

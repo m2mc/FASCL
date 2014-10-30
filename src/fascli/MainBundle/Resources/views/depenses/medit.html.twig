@@ -1,0 +1,114 @@
+{% for flashMessage in app.session.flashbag.get('notice3') %}
+<div class="alert alert-success" style="font-weight:bold;">
+{{ flashMessage }}
+</div>
+{% endfor %}
+<form class="form-horizontal" action="{{ path('dep_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<input type="hidden" name="_method" value="PUT" />
+ <div class="control_group">
+<div class="control-label">
+{{ form_errors(edit_form.datdepense) }}
+{{ form_label(edit_form.datdepense) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.datdepense) }}
+</div>
+</div>  
+<div class="control_group " >
+      <div class="control-label">
+{{ form_errors(edit_form.libelle) }}
+{{ form_label(edit_form.libelle) }}
+      </div>
+<div class="controls col-md-3 ">
+{{ form_widget(edit_form.libelle) }}
+</div>
+</div>   
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.montant) }}
+{{ form_label(edit_form.montant) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.montant) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.caisse) }}
+{{ form_label(edit_form.caisse) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.caisse) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.autorisation) }}
+{{ form_label(edit_form.autorisation) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.autorisation) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.cashpoint) }}
+{{ form_label(edit_form.cashpoint) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.cashpoint) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.rubrique) }}
+{{ form_label(edit_form.rubrique) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.rubrique) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.nfacture) }}
+{{ form_label(edit_form.nfacture) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.nfacture) }}
+</div>
+</div>
+<div class="control_group" >
+      <div class="control-label">
+{{ form_errors(edit_form.statut) }}
+{{ form_label(edit_form.statut) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.statut) }}
+</div>
+</div>
+
+<div class="control_group" >
+      <div class="control-label">
+{{ form_label(edit_form.submit) }}
+      </div>
+<div class="controls">
+{{ form_widget(edit_form.submit, { 'attr': {'class': 'pull-right btn btn-primary'}}) }}
+</div>
+</div>
+ <div class="control_group">
+{{ form_rest(edit_form) }}
+</div> 
+</form>
+{# <ul class="pager">
+    <li class="pull-left">
+        <a href="{{ path('com') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li class="pull-right">
+        <a href="{{ path('com_update', { 'id': entity.id }) }}">Modifier
+        </a>
+    </li>
+     <li>{{ form(delete_form) }} 
+    </li>
+</ul> #}

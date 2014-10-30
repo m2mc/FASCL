@@ -1,0 +1,107 @@
+{% extends '::appLayout.html.twig' %} 
+{% block sidebar %}
+{% if is_granted("ROLE_WU") %}
+              <li class="active"><a href="{{ path('client') }}">CLIENTS</a></li>
+              <li><a href="{{ path('client_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('ope_new') }}">ENREGISTRER UNE OPERATION</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UNE DEPENSE</a></li>
+              <li><a href="{{ path('dep_new') }}">NIVEAU DANS LE MOIS</a></li>
+              <li><a href="{{ path('dep_new') }}">NIVEAU DANS L'ANNEE</a></li>
+              <li><a href="{{ path('dep_new') }}">NIVEAU DEPUIS LE DEBUT</a></li>
+
+                             
+{% endif %}
+{% endblock %}
+{% block table %}
+    <h1>CLIENTS ENREGISTRES</h1>
+    <div class="count">
+  <h4>  TOTAL ENREGISTRE: {{ pagination.getTotalItemCount }} </h4>
+</div>
+    <table class="table table-bordered table-condensed table-hover">
+        <thead>
+            <tr class="info">
+                <th>N°</th>
+                <th>Nom</th>
+                <th>Prenoms</th>
+                <th>Date de naissance</th>
+                <th>Sexe</th>
+                <th>Nationalité</th>
+                <th>Telephone</th>
+                <th>Adresse</th>
+                {#<th>Caissier</th>#}
+                {#<th>Cash Point</th>#}
+                {# <th>Actions</th> #}
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+                {% set x=0 %}
+                {% set y=0 %}
+                {% set n=0 %}
+                {% set m=0 %}
+                {% for i in entity.operation %}
+                {% if i.type == 'ENVOI' %}
+                {% set x=x+ (i.montant) %}
+                {% set n=n+1 %}
+                {% elseif i.type == 'PAIEMENT' %}
+                {% set y=y+ (i.montant) %}
+                 {% set m=m+1 %}
+                {% endif %} 
+                 {% endfor %}
+
+            <tr>
+                <td><a href="{{ path('client_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenoms }}</td>
+                <td>{{ entity.datnaissance|date('d-m-Y ')  }}</td>
+                <td>{{ entity.sexe }}</td>
+                <td>{{ entity.nationalite }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.adresse }}</td>
+                {#<td>{{ entity.caissier }}</td>#}
+                {#<td>{{ entity.cashpoint }}</td>#}
+               {# <td> <ul>
+                
+                    <li style="style-decoration:none;">
+                        <a href="{{ path('client_show', { 'id': entity.id }) }}">Voir</a>
+                    </li>      
+                     <li>
+                        <a href="{{ path('client_edit', { 'id': entity.id }) }}">Modifier</a>
+                    </li> 
+                </ul>
+                </td>  #}
+            </tr>   
+            <tr class="alert alert-success">
+            <td> </td>
+            <td>NBRE ENVOIS: </td>
+            <td>{{n|number_format(0, '.', ' ')}} </td>
+            <td>TOTAL ENVOIS: </td>
+            <td>{{x|number_format(0, '.', ' ')}} </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            </tr>
+            <tr class="alert alert-success">
+            <td> </td>
+            <td>NBRE PAIEMENTS: </td>
+            <td>{{m|number_format(0, '.', ' ')}} </td>
+            <td>TOTAL PAIEMENTS: </td>
+            <td>{{y|number_format(0, '.', ' ')}} </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>    
+      <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+        {#<ul>
+        <li>
+            <a href="{{ path('client_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>#}
+    {% endblock %}

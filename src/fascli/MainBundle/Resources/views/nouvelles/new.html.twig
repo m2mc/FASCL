@@ -1,0 +1,27 @@
+{% extends '::appLayout.html.twig' %}
+
+{% block sidebar %}
+  {% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="#">INFORMATIONS</a></li>
+              <li><a href="{{ path('nouvelles') }}">NOUVELLES</a></li>
+              <li><a href="{{ path('memos') }}">MEMOS</a></li>
+              <li><a href="{{ path('reg') }}">REGLEMENTS & LOIS</a></li>
+              <li><a href="#"></a></li>
+              {% endif %}
+{% endblock %}
+
+
+{% block table -%}
+    
+    <h1>Enregistrer une nouvelle</h1>
+    {% include "fascliMainBundle:nouvelles:mnew.html.twig" %}
+    <script type="text/javascript">
+  $(function() {
+    $( ".date" ).datepicker({
+        dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+{% endblock %}

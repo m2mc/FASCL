@@ -1,0 +1,34 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('client') }}">RETOUR AUX CLIENTS</a></li>
+              <li><a href="{{ path('ope_new') }}">ENREGISTRER UNE OPERATION</a></li>                             
+{% endif %}
+{% endblock %}
+
+{% block table %}
+{% for flashMessage in app.session.flashbag.get('noticeClientEnregistre') %}
+<div class="alert alert-success" style="font-weight:bold;">
+{{ flashMessage }}
+</div>
+{% endfor %}
+{# % for flashMessage in app.session.flashbag.get('noticeClientBienEnregistre') %}
+<div class="alert alert-success" style="font-weight:bold;">
+{{ flashMessage }}
+</div>
+{% endfor % #}
+    <h1>ENREGISTRER UN CLIENT</h1>
+    {% include "fascliMainBundle:client:mnew.html.twig" %}
+    <script type="text/javascript">
+	$(function() {
+		$( ".date" ).datepicker({
+		    dateFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true,
+			minDate: '-600m',
+            maxDate: '+120m'
+		});
+	});
+</script>
+{% endblock %}
+

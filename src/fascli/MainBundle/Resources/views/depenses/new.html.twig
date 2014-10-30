@@ -1,0 +1,23 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('dep') }}">DEPENSES</a></li>
+              <li><a href="{{ path('client_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('ope_new') }}">ENREGISTRER UNE OPERATION</a></li>                             
+{% endif %}
+{% endblock %}
+
+{% block table %}
+    <h1>Enregistrer une depense</h1>
+    {% include "fascliMainBundle:depenses:mnew.html.twig" %}
+    <script type="text/javascript">
+  $(function() {
+    $( ".date" ).datepicker({
+        dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+{% endblock %}
+

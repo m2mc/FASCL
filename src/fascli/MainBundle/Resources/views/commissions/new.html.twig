@@ -1,0 +1,23 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('com') }}">CLIENTS</a></li>
+              <li><a href="{{ path('com_new') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('com_new') }}">ENREGISTRER UN RETRAIT</a></li>                             
+{% endif %}
+{% endblock %}
+
+{% block table %}
+    <h1>Enregistrer une commission</h1>
+    {% include "fascliMainBundle:commissions:mnew.html.twig" %}
+    <script type="text/javascript">
+	$(function() {
+		$( ".date" ).datepicker({
+		    dateFormat: 'dd-mm-yy',
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+	</script>
+{% endblock %}
+

@@ -1,0 +1,69 @@
+{% extends '::appLayout.html.twig' %}
+{%  set x = 0 %}
+{% block table -%}
+    <h1>COMMISSIONS ENREGISTREES</h1>
+    <div class="count">
+  <h4>  TOTAL ENREGISTRE: {{ pagination.getTotalItemCount }} </h4>
+</div>
+    <table class="table table-striped table-bordered table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+        <thead>
+            <tr>
+                {#<th>N°</th>#}
+                <th>DEBUT PERIODE</th>
+                <th>FIN PERIODE</th>
+                <th>MONTANT</th>
+                <th>ENREGISTREUR</th>
+                <th>DATE ENREGISTREMENT</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                {#<td><a href="{{ path('com_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td>{% if entity.debutperiode %}{{ entity.debutperiode|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.finperiode|date('d-m-Y') }}</td>
+                <td>{{ entity.montant|number_format(0, '.', ' ') }}</td>
+                <td>{{ entity.enregistreur }}</td>
+                <td>{% if entity.datenr %}{{ entity.datenr|date('d-m-Y') }}{% endif %}</td>
+                <td>
+                <ul class="unstyled" style="font-weight:bold;">
+                    <li>
+                        <a href="{{ path('com_show', { 'id': entity.id }) }}">VOIR</a>
+                    </li>
+                    {#<li>
+                        <a href="{{ path('com_edit', { 'id': entity.id }) }}">MODIFIER</a>
+                    </li>#}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+
+    <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+     {% for ee in entities %}
+     {% set x = x + ee.montant %}
+    {% endfor %}
+    
+<div class="alert alert-info" style="font-weight:bold;">
+<div class="alert">RECAPITULATIF DES COMMISSIONS ENREGISTREES</div>
+<table class=" table-condensed ">
+<tr>
+ <td>TOTAL COMMISSIONS : {{x|number_format(0, '.', ' ')}} F CFA <br> </td>
+</tr>
+</table>  
+</div>
+        <ul class="unstyled pager" style="font-weight:bold;">
+        <li>
+            <a href="{{ path('com_new') }}">
+                Enregistrer une nouvelle commission
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

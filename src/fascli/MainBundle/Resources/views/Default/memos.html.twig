@@ -1,0 +1,15 @@
+{% extends "::appLayout.html.twig" %}
+
+{% block sidebar %}
+  {% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="#">INFORMATIONS</a></li>
+              <li><a href="{{ path('nouv') }}">NOUVELLES</a></li>
+              <li><a href="{{ path('memos') }}">MEMOS</a></li>
+              <li><a href="{{ path('reg') }}">REGLEMENTS & LOIS</a></li>
+              <li><a href="#"></a></li>
+              {% endif %}
+{% endblock %}
+
+{% block table %}
+{% include "fascliMainBundle:client:mmemos.html.twig" %}
+{% endblock %}

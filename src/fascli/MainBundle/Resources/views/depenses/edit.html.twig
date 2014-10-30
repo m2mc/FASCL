@@ -1,0 +1,27 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('client') }}">CLIENTS</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN RETRAIT</a></li>
+              <li><a href="{{ path('client') }}">SUPPRIMER UN CLIENT</a></li>
+{% elseif is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('client') }}">CLIENTS</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN RETRAIT</a></li>
+{% elseif is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('client') }}">CLIENTS</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UN RETRAIT</a></li>                             
+{% endif %}
+{% endblock %}
+{% block table %}
+    <h1>Mise à jour</h1>
+
+    {% include "fascliMainBundle:depenses:medit.html.twig" %}
+
+        
+{% endblock %}

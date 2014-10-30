@@ -1,0 +1,51 @@
+{% extends "::appLayout.html.twig" %}
+{% block table %}
+
+<h1>INFORMATIONS IMPORTANTES</h1>
+<div class="count">
+  <h4>  TOTAL ENREGISTRE: {{ pagination.getTotalItemCount }} </h4>
+</div>
+    <table class="table table-striped table-bordered table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>DATE PUBLICATION</th>
+                <th>LIBELLE</th>
+                {#<th>Contenu</th>
+                <th>Enregistreur</th>#}
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                {#<td><a href="{{ path('nouvelles_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td>{% if entity.datenr %}{{ entity.datenr|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.titre }}</td>
+                {#<td>{{ entity.contenu }}</td>
+                <td>{{ entity.enregistreur }}</td>#}
+                <td>
+                <ul class="unstyled" style="font-weight:bold;">
+                    <li>
+                        <a href="{{ path('nouvelles_show', { 'id': entity.id }) }}">Voir</a>
+                    </li>
+                    {#<li>
+                        <a href="{{ path('nouvelles_edit', { 'id': entity.id }) }}">Modifier</a>
+                    </li>#}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+        {#<ul>
+        <li>
+            <a href="{{ path('nouvelles_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>#}
+{% endblock %}

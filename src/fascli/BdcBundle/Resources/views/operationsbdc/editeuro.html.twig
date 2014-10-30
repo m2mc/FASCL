@@ -1,0 +1,16 @@
+{% extends '::appLayout.html.twig' %}
+
+{% block table -%}
+    <h1>euro edit</h1>
+
+   {{ form(edit_form, { 'attr': {'class': 'form-inline'} ) }}
+    
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('euro') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

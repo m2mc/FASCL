@@ -1,0 +1,71 @@
+{% extends '::appLayout.html.twig' %}
+
+{% block sidebar %}
+{% if is_granted("ROLE_OPERATEUR") %}
+              <li class="active"><a href="{{ path('clients') }}">CLIENTS</a></li>
+              <li><a href="{{ path('euronew') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('dollarnew') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('suissenew') }}">ENREGISTRER UN RETRAIT</a></li>
+                             
+{% endif %}
+{% endblock %}
+{% block table -%}
+    <h2>OPERATION N° {{ entity.id }}</h2>
+
+    <table class="table table-striped table-bordered table-hover">
+        <tbody>
+        <th>DATE</th>
+        <th>CAISSIER</th>
+         <th>AGENCE</th>
+         <th>OPERATION</th>
+         <th>DEVISE</th>
+         <th>CLIENT</th>
+            <tr>
+                
+                <td>{{ entity.datope|date('d-m-Y H:i:s') }}</td>
+                <td>{{ entity.caissier }}</td>
+                <td>{{ entity.agence }}</td>
+                <td>{{ entity.typope }}</td>
+                <td>{{ entity.devise}}</td>
+                <td>{{ entity.client}}</td>
+            </tr>
+    </tbody>
+    </table>
+    <h2>DETAILS OPERATION </h2>
+    <table class="table table-striped table-bordered table-hover">
+        <tbody>
+            <th>Coupures</th>
+        <th>Quantite</th>
+         <th>Taux</th>
+         <th>Montant </th>
+          {% set y = 0 %}
+          {% set z = 0 %}
+          {% for xx in entity.suisses %}
+           {% set y = y + ((xx.val)*(xx.qte)*(xx.tauxreel)) %}
+           {% set z = xx.val*xx.qte*xx.tauxreel %}
+            <tr>
+            <td>{{xx.val}}</td>
+            <td>{{xx.qte}}</td>
+            <td>{{xx.tauxreel}}</td>
+            <td>{{z|number_format(0, '.', ' ')}} F CFA</td>
+            </tr>
+          {% endfor %}
+
+        </tbody>
+
+    </table>
+    <div style="font-weight:bold;color:red;" class="pull-right">TOTAL FACTURE: {{y|number_format(0, '.', ' ')}} F CFA</div>
+        <ul style="font-weight:bold;" class="pager">
+   
+    <li>
+        <a href="{{ path('essai', { 'id': entity.id }) }}">
+            IMPRIMER
+        </a>
+    </li>
+    
+</ul>
+<ul style="font-weight:bold;" class="pull-right">
+<li>{{ form(delete_form) }}</li>
+</ul>
+       
+{% endblock %}

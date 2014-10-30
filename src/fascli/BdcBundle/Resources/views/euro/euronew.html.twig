@@ -1,0 +1,35 @@
+{#{% extends '::base.html.twig' %}#}
+
+{% block body -%}
+    <h1>euro creation</h1>
+
+<form action="ope-bdc_createeuro" method="POST" {{ form_enctype(form) }}>
+    {# affiche l'unique champ de la tâche : description #}
+    {{ form_row(form.datope) }} 
+    {{ form_row(form.typope) }}
+    {{ form_row(form.devise) }}
+
+    <h3>Details</h3>
+    <ul class="tags">
+        {# itère sur chaque tag existant et affiche son unique champ : name #}
+        {% for euro in form.euros %}
+            <li>{{ form_row(euro.type) }}
+            {{ form_row(euro.val) }}
+            {{ form_row(euro.qte) }}
+            {{ form_row(euro.remise) }}
+            {{ form_row(euro.taux) }}</li>
+
+        {% endfor %}
+    </ul>
+
+ {{ form_rest(form) }}
+    {# ... #}
+</form>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('euro') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

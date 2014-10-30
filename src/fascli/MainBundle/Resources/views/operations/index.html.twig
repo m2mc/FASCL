@@ -1,0 +1,85 @@
+{% extends '::appLayout.html.twig' %}
+{%  set x = 0 %}
+{%  set y = 0 %}
+
+{% block table -%}
+    <h1>Dernières operations enregistrées</h1>
+     <div class="count">
+  <h4>  TOTAL ENREGISTRE: {{ pagination.getTotalItemCount }} </h4>
+</div>
+
+    <table class="table table-striped table-condensed table-bordered table-hover">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>DATE</th>
+                <th>Type</th>
+                <th>Montant</th>
+                {#<th>Client</th>#}
+                <th>Piece</th>
+                <th>Npiece</th>
+                {#<th>Expdate</th>#}
+                <th>Caissier</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                {#<td><a href="{{ path('ope_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td>{% if entity.datope %}{{ entity.datope|date('m-d-Y') }}{% endif %}</td>
+                <td>{{ entity.type }}</td>
+                <td>{{ entity.montant|number_format(0, '.', ' ') }}</td>
+                {#<td>{{ entity.client }}</td>#}
+                <td>{{ entity.piece }}</td>
+                <td>{{ entity.npiece }}</td>
+                {#<td>{% if entity.expdate %}{{ entity.expdate|date('m-d-Y') }}{% endif %}</td>#}
+                <td>{{ entity.caissier }}</td>
+                <td>
+                <ul class="unstyled">
+                    <li>
+                        <a href="{{ path('ope_show', { 'id': entity.id }) }}">VOIR</a>
+                    </li>
+                    {#<li>
+                        <a href="{{ path('ope_edit', { 'id': entity.id }) }}">MODIFIER</a>
+                    </li>#}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+    {% for envoi in envois %}
+     {% set x = x + envoi.montant %}
+    {% endfor %}
+    {% for paiement in paiements %}
+      {% set y = y + paiement.montant %}
+    {% endfor %}
+<div class="alert alert-info" style="font-weight:bold;">
+<div class="alert">RECAPITULATIF DE LA JOURNEE</div>
+<table class=" table-condensed ">
+<tr>
+<td> NOMBRE ENVOIS: {{envois|length}} </td>
+ <td>TOTAL ENVOIS : {{x|number_format(0, '.', ' ')}} F CFA <br> </td>
+</tr>
+<tr>
+<td>NOMBRE PAIEMENTS: {{paiements|length}} </td>
+ <td> TOTAL PAIEMENTS : {{y|number_format(0, '.', ' ')}} F CFA <br> </td>
+</tr>
+<tr>
+<td>COUVERTURE : {{(y-x)|number_format(0, '.', ' ')}} F CFA <br> </td>
+<td>TOTAL TRANSACTIONS : {{(y+x)|number_format(0, '.', ' ')}} F CFA <br> </td>
+</tr>
+</table>
+</div>
+        <ul class="unstyled pager" style="font-weight:bold;">
+        <li>
+            <a href="{{ path('ope_new') }}">
+                Enregistrer une nouvelle opération
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

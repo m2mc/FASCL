@@ -1,0 +1,56 @@
+{% extends '::appLayout.html.twig' %}
+
+{% block table -%}
+    <h1>DETAILS OPERATION</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>N° Enregistrement</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Date Enregistrement</th>
+                <td>{{ entity.datope|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Type Operation</th>
+                <td>{{ entity.type }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ entity.montant|number_format(0, '.', ' ') }}</td>
+            </tr>
+            <tr>
+                <th>Piece d'identité</th>
+                <td>{{ entity.piece }}</td>
+            </tr>
+            <tr>
+                <th>Numero piece</th>
+                <td>{{ entity.npiece }}</td>
+            </tr>
+            <tr>
+                <th>Date d'expiration</th>
+                <td>{{ entity.expdate|date('m-d-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Caissier</th>
+                <td>{{ entity.caissier }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="unstyled pager" style="font-weight:bold;">
+    <li>
+        <a href="{{ path('ope') }}">
+            RETOUR
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('ope_edit', { 'id': entity.id }) }}">
+            MODIFIER
+        </a>
+    </li>
+    {#<li>{{ form(delete_form) }}</li>#}
+</ul>
+{% endblock %}

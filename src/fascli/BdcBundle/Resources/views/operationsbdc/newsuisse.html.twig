@@ -1,0 +1,73 @@
+{% extends '::appLayout.html.twig' %}
+{% block table -%}
+<script type="text/javascript" src="{{ asset('bundles/fasclimain/js/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript">
+
+    jQuery(document).ready(function() {
+
+        var $divSuisses = $('div#fascli_bdcbundle_suisse_operations_suisses');
+        var $lienNewSuisse = $('<li style ="color:white; " class="btn divider"><a href="#" >AJOUTER UNE COUPURE</a></li>');
+        $divSuisses.append($('<ul></ul>')).append($lienNewSuisse);
+        $lienNewSuisse.click(function(e) {
+        e.preventDefault();
+        addChampSuisse($divSuisses, $lienNewSuisse);
+        return false;
+    });
+    var index = $divSuisses.find(':input').length;
+    
+    function addChampSuisse($divSuisses, $lienNewSuisse) {
+        var $prototype = $divSuisses.attr('data-prototype');
+        var $newChampSuisse = $('<ul></ul>')
+                      .append($($prototype.replace(/__name__label__/g,'suisse n°' + (index+1)+'<hr style="border:10px;color:red;">')
+                                          .replace(/__name__/g, index + 1)));
+                                          
+        index = index + 1;
+        $newChampSuisse.insertBefore($lienNewSuisse);
+        addTagFormDeleteLink($newChampSuisse);
+    }
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#">Supprimer</a>');
+        $tagFormLi.append($removeFormA);
+        $removeFormA.on('click', function(e) {
+            e.preventDefault();
+            $tagFormLi.remove();
+        });
+      }
+
+    });
+</script> 
+
+<form class="form-horizontal " action="{{ path('createsuisse') }}" method="post" {{ form_enctype(form) }}>
+<span style="margin-top:1px;" class="label label-inverse pull-right">
+<div class="control_group " style="margin-bottom:10px">
+      <div style="padding-top:15px;" class="control-label">
+{{ form_errors(form.client) }}
+{{ form_label(form.client, 'CLIENT'|trans) }}
+      </div>
+<div style="padding-top:10px;" class="controls ui-widget" >
+{{ form_widget(form.client, { 'attr': {'class': 'x-large '} }) }}
+
+</div>
+</div> 
+<div>
+<ul style="display:block-inline; color:white;" class="pull-right unstyled">
+        <li>
+            <a style="font-style:bold;color:white;" href="{{ path('client_new') }}">
+                Nouveau client?
+            </a>
+        </li>
+</ul>
+</div>
+</span>
+
+<div class="control_group" style="margin-bottom:10px">
+{{ form_rest(form) }}
+</div>
+
+</form>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,54 @@
+{% extends '::appLayout.html.twig' %}
+{% block table -%}
+    <h1>LISTE DES TAUX ENREGISTRES</h1>
+
+    <table class="table table-condensed table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>ACHAT EURO</th>
+                <th>VENTE EURO</th>
+                <th>ACHAT DOLLAR</th>
+                <th>VENTE DOLLAR</th>
+                <th>ACHAT GBP</th>
+                <th>VENTE GBP</th>
+                <th>ACHAT SUISSE</th>
+                <th>VENTE SUISSE</th>
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr >
+                {#<td><a href="{{ path('taux_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td style="text-align:center;font-weight:bold;">{{ entity.ea }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.ev }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.da }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.dv }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.ga }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.gv }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.sa }}</td>
+                <td style="text-align:center;font-weight:bold;">{{ entity.sv }}</td>
+                 {#<td>
+               <ul style="font-weight:bold;" class="pager ">
+                    <li>
+                        <a href="{{ path('taux_show', { 'id': entity.id }) }}">VOIR</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('taux_edit', { 'id': entity.id }) }}">MODIFIER</a>
+                    </li>
+                </ul>
+                </td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul class="pager">
+        <li>
+            <a href="{{ path('taux_new') }}">
+                ENREGISTRER UN TAUX
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

@@ -1,0 +1,133 @@
+{% extends '::appLayout.html.twig' %}
+{% block table -%}
+<script type="text/javascript" src="{{ asset('bundles/fasclimain/js/jquery-1.10.2.js') }}"></script>
+{#<script src="http://code.jquery.com/jquery1.10.2.min.js"></script>#}
+<script type="text/javascript">
+
+    jQuery(document).ready(function() {
+
+        var $divEuros = $('div#fascli_bdcbundle_euro_operations_euros');
+        var $lienNewEuro = $('<li style ="color:white; " class="btn divider"><a href="#" >AJOUTER UNE COUPURE</a></li>');
+        $divEuros.append($('<ul></ul>')).append($lienNewEuro);
+        
+        $lienNewEuro.click(function(e) {
+            e.preventDefault();
+            addChampEuro($divEuros, $lienNewEuro);
+            return false;
+    });
+    var index = $divEuros.find(':input').length;
+
+    {#function addChampEuro($divEuros, $lienNewEuro) {
+        var $prototype = $divEuros.attr('data-prototype');
+        var $val = 'form.euros.vars.prototype.val';
+        var $qte = 'form.euros.vars.prototype.qte';
+        var $remise = 'form.euros.vars.prototype.remise';
+        var ligne = '<td>'.$val.'</td>'+'<td>'.$qte.'</td>'+'<td>'.$remise.'</td>';
+        var $newChampEuro = $('<tr></tr>')
+                      .append($($ligne));
+                                          
+        index = index + 1;
+        $newChampEuro.insertBefore($lienNewEuro);
+        addTagFormDeleteLink($newChampEuro);
+    }#}
+    function addChampEuro($divEuros, $lienNewEuro) {
+        var $prototype = $divEuros.attr('data-prototype');
+        var $newChampEuro = $('<ul></ul>')
+                      .append($($prototype.replace(/__name__label__/g,'euro n°' + (index+1)+'<hr style="border:10px;color:red;">')
+                                          .replace(/__name__/g, index + 1)));
+                                          
+        index = index + 1;
+        $newChampEuro.insertBefore($lienNewEuro);
+        addTagFormDeleteLink($newChampEuro);
+    }
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#">Supprimer</a>');
+        $tagFormLi.append($removeFormA);
+        $removeFormA.on('click', function(e) {
+            e.preventDefault();
+            $tagFormLi.remove();
+        });
+      }
+
+    });
+</script> 
+{#<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var collectionHolder = $('ul.tags');
+        var $addTagLink = $('<a href="#" class="add_tag_link">Ajouter un tag</a>');
+        var $newLinkLi = $('<li></li>').append($addTagLink);
+        collectionHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+        collectionHolder.append($newLinkLi);
+
+        $addTagLink.on('click', function(e) {
+            e.preventDefault();
+            addTagForm(collectionHolder, $newLinkLi);
+        });
+    });
+      function addTagForm(collectionHolder, $newLinkLi) {
+        var prototype = collectionHolder.attr('data-prototype');
+        var newForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+        var $newFormLi = $('<li></li>').append(newForm);
+        $newLinkLi.before($newFormLi);
+        addTagFormDeleteLink($newFormLi);
+     }
+
+      function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a href="#">Supprimer ce tag</a>');
+        $tagFormLi.append($removeFormA);
+        $removeFormA.on('click', function(e) {
+            e.preventDefault();
+            $tagFormLi.remove();
+        });
+      }
+    });
+</script>#}
+
+
+
+<form class="form-horizontal " action="{{ path('createeuro') }}" method="post" {{ form_enctype(form) }}>
+<span style="margin-top:1px;" class="label label-inverse pull-right">
+<div class="control_group " style="margin-bottom:10px">
+      <div style="padding-top:15px;" class="control-label">
+{{ form_errors(form.client) }}
+{{ form_label(form.client, 'CLIENT'|trans) }}
+      </div>
+<div style="padding-top:10px;" class="controls ui-widget" >
+{{ form_widget(form.client, { 'attr': {'class': 'x-large '} }) }}
+
+</div>
+</div> 
+<div>
+<ul style="display:block-inline; color:white;" class="pull-right unstyled">
+        <li>
+            <a style="font-style:bold;color:white;" href="{{ path('client_new') }}">
+                Nouveau client?
+            </a>
+        </li>
+</ul>
+</div>
+</span>
+ {% for euro in form.euros %} {% include 'fascliBdcBundle:operationsbdc:europrototype.html.twig' with {form: euros.vars.form} %} {% endfor %} 
+
+
+<div class="control_group" style="margin-bottom:10px">
+{{ form_rest(form) }}
+</div>
+
+</form>
+
+
+{% endblock %}
+
+{#function addChampEuro($divEuros, $lienNewEuro) {
+        var $prototype = $divEuros.attr('data-prototype');
+        var $newChampEuro = $('<ul></ul>')
+                      .append($($prototype.replace(/__name__label__/g,'euro n°' + (index+1)+'<hr style="border:10px;color:red;">')
+                                          .replace(/__name__/g, index + 1)));
+                                          
+        index = index + 1;
+        $newChampEuro.insertBefore($lienNewEuro);
+        addTagFormDeleteLink($newChampEuro);
+    }#}

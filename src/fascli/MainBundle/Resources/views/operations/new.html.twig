@@ -1,0 +1,22 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('ope') }}">OPERATIONS ENREGISTREES</a></li>
+              <li><a href="{{ path('client') }}">CLIENTS ENREGISTRES</a></li>
+              <li><a href="{{ path('dep_new') }}">ENREGISTRER UNE DEPENSE</a></li>                             
+{% endif %}
+{% endblock %}
+
+{% block table %}
+    <h1>Enregistrer une operation</h1>
+    {% include "fascliMainBundle:operations:mnew.html.twig" %}
+    <script type="text/javascript">
+  $(function() {
+    $( ".date" ).datepicker({
+        dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends '::appLayout.html.twig' %}
+
+{% block sidebar %}
+  {% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="#">INFORMATIONS</a></li>
+              <li><a href="{{ path('nouvelles') }}">NOUVELLES</a></li>
+              <li><a href="{{ path('memos') }}">MEMOS</a></li>
+              <li><a href="{{ path('reg') }}">REGLEMENTS & LOIS</a></li>
+              <li><a href="#"></a></li>
+              {% endif %}
+{% endblock %}
+
+{% block table -%}
+    <h1>MEMOS</h1>
+    <div class="count">
+  <h4>  TOTAL ENREGISTRE: {{ pagination.getTotalItemCount }} </h4>
+</div>
+    <table class="table table-striped table-bordered table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+        <thead>
+            <tr>
+                {#<th>N°</th>#}
+                <th>DATE</th>
+                {#<th>DE</th>#}
+                <th>TITRE</th>
+                {#<th>CONTENU</th>#}
+                {#<th>ACTIONS</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pagination %}
+            <tr>
+                {#<td><a href="{{ path('memos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td>{% if entity.datenr %}{{ entity.datenr|date('d-m-Y') }}{% endif %}</td>
+                {#<td>{{ entity.de }}</td>#}
+                <td>{{ entity.titre }}</td>
+                {#<td>{{ entity.contenu }}</td>#}
+                <td>
+                <ul class="unstyled" style="font-weight:bold;">
+                    <li>
+                        <a href="{{ path('memos_show', { 'id': entity.id }) }}">VOIR</a>
+                    </li>
+                    {#<li>
+                        <a href="{{ path('memos_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>#}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation pagination-large" style="font-weight:bold;font-size:1.9em;">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+        {#<ul>
+        <li>
+            <a href="{{ path('memos_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul> #}
+    {% endblock %}

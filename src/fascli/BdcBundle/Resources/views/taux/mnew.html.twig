@@ -1,0 +1,89 @@
+<form class="form-horizontal " action="{{ path('taux_create') }}" method="post" {{ form_enctype(form) }}>
+    <div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.ea) }}
+{{ form_label(form.ea, 'ACHAT EURO'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.ea) }}
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.ev) }}
+{{ form_label(form.ev, 'VENTE EURO'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.ev, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div>   
+ <div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.da) }}
+{{ form_label(form.da, 'ACHAT DOLLAR '|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.da) }}
+</div>
+</div> 
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.dv) }}
+{{ form_label(form.dv, 'VENTE DOLLAR'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.dv) }}
+</div>
+</div>  
+<div class="control_group " style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.ga) }}
+{{ form_label(form.ga, 'ACHAT GBP'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.ga) }}
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.gv) }}
+{{ form_label(form.gv, 'VENTE GBP'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.gv) }}
+</div>
+</div>
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.sa) }}
+{{ form_label(form.sa, 'ACHAT F/SUISSE'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.sa) }}
+</div>
+</div>
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.sv) }}
+{{ form_label(form.sv, 'VENTE F/SUISSE'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.sv) }}
+</div>
+</div>
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_label(form.submit, 'Enregistrer'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}} ) }}
+</div>
+</div> 
+<div class="control_group">
+{{ form_rest(form) }}
+</div>
+    {#<p>
+        <button class="btn btn-inverse pull-right" type="submit">Enregistrer</button>
+    </p>#}
+</form>
+

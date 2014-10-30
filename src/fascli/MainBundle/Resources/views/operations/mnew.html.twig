@@ -1,0 +1,73 @@
+<form class="form-horizontal " action="{{ path('ope_create') }}" method="post" {{ form_enctype(form) }}>
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.client) }}
+{{ form_label(form.client, 'Client'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.client) }}
+</div>
+</div>
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.type) }}
+{{ form_label(form.type, 'Type operation'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.type) }}
+</div>
+</div>   
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.montant) }}
+{{ form_label(form.montant, 'Montant'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.montant, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.piece) }}
+{{ form_label(form.piece, 'Piece'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.piece, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.npiece) }}
+{{ form_label(form.npiece, 'Npiece'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.npiece) }}
+</div>
+</div> 
+<div class="control_group" style="margin-bottom:10px">
+<div class="control-label">
+{{ form_errors(form.expdate) }}
+{{ form_label(form.expdate, 'Date expiration'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.expdate) }}
+</div>
+</div>  
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_label(form.submit, 'Enregistrer'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary pull-right'} }) }}
+</div>
+</div>
+<div class="control_group">
+{{ form_rest(form) }}
+</div>
+    {#<p>
+        <button class="btn btn-inverse pull-right" type="submit">Enregistrer</button>
+    </p>#}
+</form>

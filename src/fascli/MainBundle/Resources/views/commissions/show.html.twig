@@ -1,0 +1,47 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('com') }}">CLIENTS</a></li>
+              <li><a href="{{ path('com_new') }}">ENREGISTRER UNE COMMISSION</a></li>
+              <li><a href="{{ path('com_new') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('com_new') }}">ENREGISTRER UN RETRAIT</a></li>
+                             
+{% endif %}
+{% endblock %}
+{% block table -%}
+    <h2>COMMISSION</h2>
+
+    <table class="table table-striped table-bordered table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+        <tbody>
+        {#<th>Id</th>#}
+        <th>Debut de période</th>
+        <th>Fin de période</th>
+         <th>Montant</th>
+         <th>Enregistreur</th>
+         <th>Date enregistrement</th>
+         
+            <tr>
+                
+                {#<td>{{ entity.id }}</td>#}
+                <td>{{ entity.debutperiode|date('d-m-Y') }}</td>
+                <td>{{ entity.finperiode|date("d-m-Y")}}</td>
+                <td>{{ entity.montant|number_format(0, '.', ' ')}}</td>
+                <td>{{ entity.enregistreur }}</td>
+                <td>{{ entity.datenr|date("d-m-Y") }}</td>
+            </tr>
+    </tbody>
+    </table>
+    <ul class="unstyled pager">
+    <li>
+        <a href="{{ path('com') }}">
+            RETOUR
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('com_edit', { 'id': entity.id }) }}">
+            MODIFIER
+        </a>
+    </li>
+    {#<li>{{ form(delete_form) }}</li>#}
+</ul>
+{% endblock %}

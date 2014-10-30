@@ -1,0 +1,101 @@
+<form class="form-horizontal " action="{{ path('dep_create') }}" method="post" {{ form_enctype(form) }}>
+<div class="form_group control_group " style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.datdepense) }}
+{{ form_label(form.datdepense, 'Date depense'|trans) }}
+      </div>
+<div class="controls ui-widget" >
+{{ form_widget(form.datdepense) }} 
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.libelle) }}
+{{ form_label(form.libelle, 'Libelle'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.libelle, { 'attr': {'class': ''} }) }}
+</div>
+</div>   
+<div class="control_group " style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.montant) }}
+{{ form_label(form.montant, 'Montant'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.montant) }}
+</div>
+</div>  
+<div class="control_group " style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.caisse) }}
+{{ form_label(form.caisse, 'Caisse'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.caisse) }}
+</div>
+</div>  
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.autorisation) }}
+{{ form_label(form.autorisation, 'Autorisation'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.autorisation, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div> 
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.cashpoint) }}
+{{ form_label(form.cashpoint, 'Cash Point'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.cashpoint, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div>  
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.rubrique) }}
+{{ form_label(form.rubrique, 'Rubrique'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.rubrique, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div> 
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.nfacture) }}
+{{ form_label(form.nfacture, 'Nfacture'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.nfacture, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div>  
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_errors(form.statut) }}
+{{ form_label(form.statut, 'Statut'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.statut, { 'attr': {'class': 'inactive'} }) }}
+</div>
+</div>  
+
+<div class="control_group" style="margin-bottom:10px">
+      <div class="control-label">
+{{ form_label(form.submit, 'Enregistrer'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary pull-right'} }) }}
+</div>
+</div>
+<div class="control_group">
+{{ form_rest(form) }}
+</div>
+    {#<p>
+        <button class="btn btn-inverse pull-right" type="submit">Enregistrer</button>
+    </p>#}
+</form>

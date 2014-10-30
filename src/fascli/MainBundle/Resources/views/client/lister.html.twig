@@ -1,0 +1,79 @@
+ {% extends "::appLayout.html.twig" %} 
+{% block page %}{{parent()}}rechercher un client {% endblock %}
+{% block fichiers_head %}
+{{parent()}}
+ <style type="text/css">
+      .loading{
+      margin-bottom:5px;
+      background-image: url(../images/transfer1.jpg);
+      background-color: red;
+    }
+    </style>
+{% endblock %}
+{% block javascripts %}
+{{parent()}}
+
+{% endblock %}
+{% block stylesheets  %}
+ {{parent()}}
+<style>
+.loading {
+    background:url(../images/loading.gif) no-repeat ;
+    width: 100%;
+    height: 5px;
+}
+</style>
+{% endblock %}
+{% block table %}
+
+<form class="form-horizontal span12 " id="form_recherche" style="margin-left:0%;margin-top:2%" action="{{ path('fas_client_rechercher') }}" method="post" {{ form_enctype(form) }}>
+    <div class="control_group" style="">
+      <div class="control-label">
+{{ form_errors(form.motcle) }}
+{{ form_label(form.motcle, 'Nom ou Prenoms'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.motcle) }}
+</div>
+</div>
+<div class="control_group" style="">
+      <div class="control-label">
+{{ form_label(form.submit, 'Rechercher'|trans) }}
+      </div>
+<div class="controls">
+{{ form_widget(form.submit) }}
+</div>
+</div>  
+<h5 class="pull-right"> Clients enregistrés: 0{{sss|length}}</h5>
+</form>
+<div class="loading" style="background-color:red;"></div>
+<div style="clear:both;display:block;width:100%;"></div>
+<div id="resultats_recherche" >
+<div class="row" style="margin-left:5%">
+<div class="span12">
+{% include 'fascliMainBundle:client:liste.html.twig' with {'clients' : clients} %}
+
+</div>
+</div>
+</div> 
+<script>
+$(".loading").hide();
+$("#form_recherche").submit(function(){ 
+    $(".loading").show();
+    var motcle = $("#clientrecherche_motcle").val();
+    var DATA = 'motcle=' + motcle;
+    $.ajax({
+        type: "POST",
+        url: "{{ path('fas_client_rechercher')}}",
+        data: DATA,
+        cache: false,
+        success: function(data){
+           $('#resultats_recherche').html(data);
+           $(".loading").hide();
+        }
+    });    
+    return false;
+});
+</script>
+{% endblock %}
+

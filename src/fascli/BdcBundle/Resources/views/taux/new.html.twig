@@ -1,0 +1,21 @@
+{% extends '::appLayout.html.twig' %}
+{% block message %}
+{{ parent()}}
+{% endblock %}
+{% block sidebar %}
+{% if is_granted("ROLE_BDC") %}
+              <li class="active"><a href="{{ path('taux') }}">LISTE DES TAUX</a></li>
+              
+                             
+{% endif %}
+{% endblock %}
+{% block table-%}
+    <h1>Enregistrer un taux pour une coupure	</h1>
+{% include "fascliBdcBundle:taux:mnew.html.twig" %}
+{% endblock %}
+
+
+
+
+
+

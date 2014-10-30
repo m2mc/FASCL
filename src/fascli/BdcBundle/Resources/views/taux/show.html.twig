@@ -1,0 +1,59 @@
+{% extends '::appLayout.html.twig' %}
+{% block table -%}
+    <h1>TAUX ENREGISTRES POUR LA COUPURE</h1>
+
+    <table class="table table-condensed table-striped table-bordered table-hover">
+        <tbody>
+            <tr>
+                {#<th>Id</th>#}
+                {#<td>{{ entity.id }}</td>#}
+            </tr>
+            <tr>
+                <th>ACHAT EURO</th>
+                <td>{{ entity.ea }}</td>
+            </tr>
+            <tr>
+                <th>VENTE EURO</th>
+                <td>{{ entity.ev }}</td>
+            </tr>
+            <tr>
+                <th>ACHAT DOLLAR</th>
+                <td>{{ entity.da }}</td>
+            </tr>
+            <tr>
+                <th>VENTE DOLLAR</th>
+                <td>{{ entity.dv }}</td>
+            </tr>
+            <tr>
+                <th>ACHAT GBP</th>
+                <td>{{ entity.ga }}</td>
+            </tr>
+            <tr>
+                <th>VENTE GBP</th>
+                <td>{{ entity.gv }}</td>
+            </tr>
+            <tr>
+                <th>ACHAT F/SUISSE</th>
+                <td>{{ entity.sa }}</td>
+            </tr>
+            <tr>
+                <th>VENTE F/SUISSE</th>
+                <td>{{ entity.sv }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="pager">
+    <li>
+        <a href="{{ path('taux') }}">
+            RETOUR AUX TAUX
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('taux_edit', { 'id': entity.id }) }}">
+            MODIFIER
+        </a>
+    </li>
+    {#<li>{{ form(delete_form) }}</li>#}
+</ul>
+{% endblock %}

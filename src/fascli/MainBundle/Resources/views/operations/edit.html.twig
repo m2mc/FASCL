@@ -1,0 +1,26 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('ope') }}">OPERATIONS</a></li>
+              <li><a href="{{ path('client_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('ope_new') }}">ENREGISTRER UNE OPERATION</a></li>
+              <li><a href="{{ path('ope_new') }}">STATISTIQUES</a></li>
+              <li><a href="{{ path('fos_user_profile_show') }}">PROFILE</a></li>
+                                     
+{% endif %}
+{% endblock %}
+{% block table %}
+    <h1>MISE A JOUR OPERATION</h1>
+
+    {% include "fascliMainBundle:operations:medit.html.twig" %}
+    <script type="text/javascript">
+  $(function() {
+    $( ".date" ).datepicker({
+        dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true
+    });
+  });
+</script>
+        
+{% endblock %}

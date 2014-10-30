@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>euro creation</h1>
+
+    {{ form(form, { 'attr': {'class': 'form-inline'} ) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('euro') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.val) }}
+    {{ form_row(form.qte) }}
+    {{ form_row(form.remise) }}
+
+    <input type="submit" value="Envoyez le formulaire"/>
+{{ form_end(form) }}

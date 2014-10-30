@@ -1,0 +1,115 @@
+{% extends '::appLayout.html.twig' %}
+{% block sidebar %}
+{% if is_granted("ROLE_USER") %}
+              <li class="active"><a href="{{ path('client') }}">CLIENTS</a></li>
+              <li><a href="{{ path('client_new') }}">ENREGISTRER UN CLIENT</a></li>
+              <li><a href="{{ path('client_new') }}">ENREGISTRER UN ABONNEMENT</a></li>
+              <li><a href="{{ path('client_new') }}">ENREGISTRER UN RETRAIT</a></li>
+                             
+{% endif %}
+{% endblock %}
+{% block table -%}
+    <h2>CLIENT ENREGISTRE</h2>
+
+  <table class="table table-bordered table-condensed table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+  <thead style="background:rgba(0,0,0,0.6);text-align:center;color:#fff;">
+        
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prenoms</th>
+         <th>Date de naissance</th>
+         <th>Sexe</th>
+         <th>Nationalite</th>
+         <th>Telephone</th>
+         <th>Profession</th>
+         <th>Adresse</th>
+          {#<th>Caissier</th>#}
+          {#<th>Cashpoint</th>#}
+          </thead>
+        <tbody>
+            <tr>
+                
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenoms }}</td>
+                <td>{{ entity.datnaissance|date('d-m-Y') }}</td>
+                <td>{{ entity.sexe }}</td>
+                <td>{{ entity.nationalite }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.profession }}</td>
+                <td>{{ entity.adresse }}</td>
+                {#<td>{{ entity.caissier }}</td>#}
+                {#<td>{{ entity.cashpoint }}</td>#}
+            </tr>
+    </tbody>
+    </table>
+    <h2><span>ENVOIS DU CLIENT</span></h2>
+    <table class="table table-bordered table-condensed table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify;">
+    <thead style="background:rgba(0,0,0,0.6);text-align:center;color:#fff;">
+     <th>DATE</th>
+    <th>MTCN</th>
+    <th>MONTANT</th>
+     <th>EXPEDITEUR</th>
+     <th>CAISSIER</th>
+     <th>AGENCE</th>
+    </thead>
+    <tbody>
+    
+     <tr>
+                
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenoms }}</td>
+                <td>{{ entity.datnaissance|date('d-m-Y') }}</td>
+                <td>{{ entity.sexe }}</td>
+                <td>{{ entity.sexe }}</td>
+                
+            </tr>
+    </tbody>
+
+
+    </table>
+    <h2><span>PAIEMENTS DU CLIENT</span></h2>
+    <table class="table table-bordered table-condensed table-hover" style="font-family : Verdana;font-size:1.2em;text-align:justify; ">
+    <thead style="background:rgba(0,0,255,0.6);text-align:center;text-align:center;color:#fff;">
+     <th>DATE</th>
+    <th>MTCN</th>
+    <th>MONTANT</th>
+     <th>EXPEDITEUR</th>
+     <th>CAISSIER</th>
+     <th>AGENCE</th>
+    </thead>
+    <tbody >
+    
+     <tr>
+                
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenoms }}</td>
+                <td>{{ entity.datnaissance|date('d-m-Y') }}</td>
+                <td>{{ entity.sexe }}</td>
+                <td>{{ entity.sexe }}</td>
+            </tr>
+    </tbody>
+
+
+    </table>
+        <ul class="pager unstyled">
+        <li>
+        <a href="{{ path('client_edit', { 'id': entity.id }) }}">
+            MODIFIER
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('client') }}">
+            RETOUR A LA LISTE DES CLIENTS
+        </a>
+    </li>
+    {#<li>
+        <a href="{{ path('client_show', { 'id': entity.id }) }}">
+            Voir
+        </a>
+    </li>
+    {#<li>{{ form(delete_form) }}</li>#}
+</ul> 
+{% endblock %}
