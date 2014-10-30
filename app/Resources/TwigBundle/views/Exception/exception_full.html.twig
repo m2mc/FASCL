@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block icones %}
+<div class="span2" style="padding-left:45%;padding-top:10%">
+
+          <img class="img-circle" src="{{ asset('bundles/kwcotonou/images/transfert1.jpg')}}"  width="120" height="120" alt=""><br><br><br>
+          <div class="alert alert-danger"style="font-weight:bold;font-size:100%;position:justify;padding-left:-40%">OUF FRANJIN! <br> TU NE PEUX PAS ALLER LA! &raquo;</div>
+          {{ exception.message }} ({{ status_code }} {{ status_text }})  
+ </div>
+{% endblock %}
+{% block auth %}
+{% endblock %}
